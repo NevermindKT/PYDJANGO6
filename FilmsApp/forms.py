@@ -4,4 +4,4 @@ from .models import Movie
 class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
-        fields = ['title', 'release_date', 'country', 'poster']
+        fields = ['title', 'release_date', 'country', 'poster', 'rating']

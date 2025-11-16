@@ -28,21 +28,29 @@
 </head>
 <body>
 
-<h1>Каталог фильмов</h1>
-<a href="{% url 'add_movie' %}">Добавить фильм</a>
+    <h1>Фильмы</h1>
 
-<div class="grid">
+    <a href="?sort=date">Сортировать по дате</a> |
+    <a href="?sort=rating">Сортировать по рейтингу</a> |
+    <a href="{% url 'add_movie' %}">Добавить фильм</a>
+
+    <hr>
+
     {% for movie in movies %}
-    <div class="card">
-        <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <img src="{{ movie.poster.url }}" width="120">
+
         <h2>{{ movie.title }}</h2>
-        <p>Год: {{ movie.release_date }}</p>
+        <p>Дата выхода: {{ movie.release_date }}</p>
         <p>Страна: {{ movie.country }}</p>
+        <p>Рейтинг: {{ movie.rating }}</p>
+
+        <a href="{% url 'delete_movie' movie.id %}"
+           onclick="return confirm('Удалить фильм?');">
+           Удалить
+        </a>
     </div>
-    {% empty %}
-        <p>Фильмов нет</p>
     {% endfor %}
-</div>
 
 </body>
 </html>

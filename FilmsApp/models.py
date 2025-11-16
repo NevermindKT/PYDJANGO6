@@ -5,6 +5,7 @@ class Movie(models.Model):
     release_date = models.DateField()
     country = models.CharField(max_length=100)
     poster = models.ImageField(upload_to='posters/')
+    rating = models.FloatField(default=0)
 
     def __str__(self):
         return self.title
